@@ -12,6 +12,7 @@ import {
 } from 'react-native';
 import { colors, spacing, borderRadius, fontSize, fontWeight, shadows } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
+import Svg, { G, Path } from 'react-native-svg';
 
 
 interface Props {
@@ -46,7 +47,7 @@ export function HomeScreen({ onJobPress, onProfilePress, onNotificationPress }: 
   const [searchQuery, setSearchQuery] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('All');
 
-  const jobs: Job[] = [
+const jobs: Job[] = [
     {
       id: '1',
       title: 'UI/UX Designer',
@@ -158,7 +159,7 @@ export function HomeScreen({ onJobPress, onProfilePress, onNotificationPress }: 
           />
         </TouchableOpacity>
       </View>
-      
+
       <Text style={styles.jobLocation}>{job.location}</Text>
       
       <View style={styles.salaryContainer}>
@@ -237,6 +238,7 @@ export function HomeScreen({ onJobPress, onProfilePress, onNotificationPress }: 
 
         {/* Hero Banner */}
         <View style={styles.heroBanner}>
+          <Image source={require('../assets/homescreen/bghero.png')} style={styles.heroBGImage} />
           <View style={styles.heroContent}>
             <Text style={styles.heroTitle}>
               The future is for{'\n'}those who take the{'\n'}next step
@@ -408,20 +410,22 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     backgroundColor: colors.gray100,
-    borderRadius: borderRadius.md,
+    borderRadius: borderRadius.xl,
     paddingHorizontal: spacing.md,
     marginHorizontal: spacing.xs,
   },
   searchIcon: {
-    width: 20,
-    height: 20,
+    width: 15,
+    height: 15,
     marginRight: spacing.sm,
+    borderColor: colors.primary,
   },
   searchInput: {
     flex: 1,
-    fontSize: 14,
+    fontSize: 16,
     color: colors.textPrimary,
     paddingVertical: spacing.md,
+    fontWeight: fontWeight.medium,
   },
   filterButton: {
     width: 50,
@@ -437,7 +441,7 @@ const styles = StyleSheet.create({
   },
   heroBanner: { 
     flexDirection: 'row', 
-    backgroundColor: '#4F80FF', 
+    backgroundColor: '#0A66C2', 
     marginHorizontal: spacing.md, 
     borderRadius: 28, 
     padding: 15, 
@@ -479,6 +483,15 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     marginHorizontal: spacing.md,
     opacity: 0.3,
+  },
+  heroBGImage: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    resizeMode: 'cover',
+    opacity: 0.5,
   },
   heroImage: {
     justifyContent: 'center',

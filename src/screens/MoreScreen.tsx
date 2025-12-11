@@ -1,172 +1,165 @@
-import { Text, View, StyleSheet, ScrollView, Image, ImageSourcePropType, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native'
+import React, { useState } from 'react'
+import { useNavigation } from '@react-navigation/native';
 import { colors, spacing, borderRadius, fontSize, fontWeight, shadows } from '../styles/theme';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 
 interface job{
   name: string;
   id: string;
-  logo: ImageSourcePropType;
+  icon: string;
 }
 
 interface career{
   name: string;
   id: string;
-  logo: ImageSourcePropType;
+  icon: string;
 }
 
 interface Abroad{
   name: string;
   id: string;
-  logo: ImageSourcePropType;
+  icon: string;
 }
 
 interface campus{
   name: string;
   id: string;
-  logo: ImageSourcePropType;
+  icon: string;
 }
 
 const jobs: job[] = [
-  { name: 'Saved jobs', id: '1', logo: require('../assets/more/artical.png')},
-  { name: 'Applied jobs', id: '2', logo: require('../assets/more/appliedjobs.png')}, 
-  { name: 'Settings', id: '3', logo: require('../assets/more/settings.png')},
-  { name: 'Artical', id: '5', logo: require('../assets/more/artical.png')},
-  { name: 'Support', id: '6', logo: require('../assets/more/support.png')},
+  { name: 'Saved jobs', id: '1', icon: 'bookmark-outline' },
+  { name: 'Applied jobs', id: '2', icon: 'briefcase-check' },
+  { name: 'Settings', id: '3', icon: 'cog-outline' },
+  { name: 'Artical', id: '5', icon: 'newspaper' },
+  { name: 'Support', id: '6', icon: 'headset' },
 ]
 
 const Development: career[] = [
-  { name: 'Training', id: '1', logo: require('../assets/more/training.png')},
-  { name: 'Mock Interview', id: '2', logo: require('../assets/more/mock.png')},
-  { name: 'Career Gudience', id: '3', logo: require('../assets/more/careergudience.png')},
+  { name: 'Training', id: '1', icon: 'school' },
+  { name: 'Mock Interview', id: '2', icon: 'account-tie' },
+  { name: 'Career Gudience', id: '3', icon: 'lightbulb-on-outline' },
 ]
 
 const CareerAbroad: Abroad[] = [
-  { name: 'Job in Abroad', id: '1', logo: require('../assets/more/careergudience.png')},
-  { name: 'Study in Abroad', id: '2', logo: require('../assets/more/studyinabroad.png')},
+  { name: 'Job in Abroad', id: '1', icon: 'airplane' },
+  { name: 'Study in Abroad', id: '2', icon: 'school' },
 ]
 
 const campusConnect: campus [] = [
-  { name: 'Universities', id: '1', logo: require('../assets/more/mock.png')},
-  { name: 'Colleges', id: '2', logo: require('../assets/more/careergudience.png')},
+  { name: 'Universities', id: '1', icon: 'school' },
+  { name: 'Colleges', id: '2', icon: 'office-building' },
 ]
 
-const renderCareerCard = (item: career) => {
-  return (
+export const MoreScreen: React.FC = () => {
+  const navigation = useNavigation<any>();
+  const [selectedJob, setSelectedJob] = useState<string | null>(null);
+  const [SavedJob, setSavedJob] = useState<string | null>(null);
+
+  const handlePress = (item: job) => {
+    setSelectedJob(item.name);
+    if (item.name === 'Settings') {
+      navigation.navigate('Settings');
+      return;
+    }
+    if (item.name === 'Saved jobs') {
+      navigation.navigate('SavedJob');
+      return;
+    }
+  };
+
+  const renderCareerCard = (item: career) => (
     <TouchableOpacity
       key={item.id}
       style={styles.jobcontainer}
       activeOpacity={0.7}
-      onPress={() => {}}
+      onPress={() => handlePress({ name: item.name, id: item.id, icon: item.icon })}
     >
       <View style={styles.iconLogo}>
-        <Image
-          source={item.logo}
-          style={{ width: 30, height: 30 }}
-          resizeMode="contain"
-        />
+        <MaterialCommunityIcons name={item.icon} size={30} color="#6A4AED" />
       </View>
       <Text style={styles.jobtext}>{item.name}</Text>
     </TouchableOpacity>
-  )
-}
+  );
 
-const renderjobCard = (item: job) => {
-  return (
+  const renderjobCard = (item: job) => (
     <TouchableOpacity
       key={item.id}
       style={styles.jobcontainer}
       activeOpacity={0.7}
-      onPress={() => {}}
+      onPress={() => handlePress(item)}
     >
       <View style={styles.iconLogo}>
-        <Image
-          source={item.logo}
-          style={{ width: 30, height: 30 }}
-          resizeMode="contain"
-        />
+        <MaterialCommunityIcons name={item.icon} size={30} color="#6A4AED" />
       </View>
 
       <Text style={styles.jobtext}>{item.name}</Text>
     </TouchableOpacity>
   );
-}
 
-const renderAbroadCard = (item: Abroad) => {
-  return (
+  const renderAbroadCard = (item: Abroad) => (
     <TouchableOpacity
       key={item.id}
       style={styles.jobcontainer}
       activeOpacity={0.7}
-      onPress={() => {}}
+      onPress={() => handlePress({ name: item.name, id: item.id, icon: item.icon })}
     >
       <View style={styles.iconLogo}>
-        <Image
-          source={item.logo}
-          style={{ width: 30, height: 30 }}
-          resizeMode="contain"
-        />
+        <MaterialCommunityIcons name={item.icon} size={30} color="#6A4AED" />
       </View>
       <Text style={styles.jobtext}>{item.name}</Text>
     </TouchableOpacity>
   );
-}
 
-const rendercampusCard = (item: campus) => {
-  return (
+  const rendercampusCard = (item: campus) => (
     <TouchableOpacity
       key={item.id}
       style={styles.jobcontainer}
       activeOpacity={0.7}
-      onPress={() => {}}
+      onPress={() => handlePress({ name: item.name, id: item.id, icon: item.icon })}
     >
       <View style={styles.iconLogo}>
-        <Image
-          source={item.logo}
-          style={{ width: 30, height: 30}}
-          resizeMode="contain"
-          />
+        <MaterialCommunityIcons name={item.icon} size={30} color="#6A4AED" />
       </View>
       <Text style={styles.jobtext}>{item.name}</Text>
     </TouchableOpacity>
-  )
-}
+  );
 
-export class MoreScreen extends Component {
-  render() {
-    return (
-      <ScrollView>
-        <View style={styles.header}>
-          <Text style={styles.title}>More</Text>
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Jobs</Text>
-        </View>
-        <View style={styles.gridContainer}>
+  return (
+    <ScrollView>
+      <View style={styles.header}>
+        <Text style={styles.title}>More</Text>
+      </View>
+      <View>
+        <Text style={styles.subtitle}>Jobs</Text>
+      </View>
+      <View style={styles.gridContainer}>
         {jobs.map(renderjobCard)}
-        </View>
-        <View>
-          <Text style={styles.subtitle}> Career Development</Text>
-        </View>
-        <View style={styles.gridContainer}>
-          {Development.map(renderCareerCard)}
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Career in Abroad</Text>
-        </View>
-        <View style={styles.gridContainer}>
-          {CareerAbroad.map(renderAbroadCard)}
-        </View>
-        <View>
-          <Text style={styles.subtitle}>Campus Connect</Text>
-        </View>
-        <View style={styles.gridContainer}>
-          {campusConnect.map(rendercampusCard)}
-        </View>
+      </View>
+      <View>
+        <Text style={styles.subtitle}> Career Development</Text>
+      </View>
+      <View style={styles.gridContainer}>
+        {Development.map(renderCareerCard)}
+      </View>
+      <View>
+        <Text style={styles.subtitle}>Career in Abroad</Text>
+      </View>
+      <View style={styles.gridContainer}>
+        {CareerAbroad.map(renderAbroadCard)}
+      </View>
+      <View>
+        <Text style={styles.subtitle}>Campus Connect</Text>
+      </View>
+      <View style={styles.gridContainer}>
+        {campusConnect.map(rendercampusCard)}
+      </View>
 
-      </ScrollView>
-    )
-  }
-}
+    </ScrollView>
+  );
+};
 
 const styles = StyleSheet.create({
   header: {
@@ -210,8 +203,8 @@ const styles = StyleSheet.create({
     marginBottom: -30,
   },
   iconLogo: {
-    width: 65,
-    height: 65,
+    width: 55,
+    height: 55,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#F0ECFD",

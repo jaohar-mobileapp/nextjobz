@@ -1,15 +1,16 @@
 import { StyleSheet, Text, View, Image,TouchableOpacity,ScrollView } from 'react-native'
-import React, { Component } from 'react'
+import React from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { borderRadius, colors, fontSize, shadows, spacing,fontWeight } from '../styles/theme';
 import Icon from 'react-native-vector-icons/Feather';
+import Octicons from 'react-native-vector-icons/Octicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { TextInput } from 'react-native-gesture-handler';
-import Octicons  from "react-native-vector-icons/Octicons";
-
+import { vectorIcons } from "../constants/vectorIcons";
 
 
 interface countprops{
-  icon: string;
+  icon: keyof typeof vectorIcons | string;
   count: string;
   title: string;
   id: string;
@@ -29,19 +30,18 @@ interface Job {
   isBookmarked: boolean;
 }
 
-interface jobcategory{
+interface jobcategory {
   id: string;
-  logo: any;
+  icon: string;
   name: string;
   count: string;
 }
 
 
-
 const jobcounmts: countprops[] = [
-  { icon: 'hourglass', count: '1200', title: 'Live Jobs', id: '1' },
-  { icon: 'users', count: '80012', title: 'Vacancies', id: '2' },
-  { icon: 'map-pin', count: '50+', title: 'Organizations', id: '3' },
+  { icon: 'Organization' , count: '1200', title: 'Live Jobs', id: '1' },
+  { icon: 'chair' , count: '80012', title: 'Vacancies', id: '2' },
+  { icon: 'Organization' , count: '50+', title: 'Organizations', id: '3' },
 ]
 
 const jobs: Job[] = [
@@ -113,13 +113,14 @@ const jobs: Job[] = [
   ];
 
   const jobcategorys: jobcategory[] = [
-  { id: '1', logo: require('../assets/jobscreen/jobcategory/cse.png'), name: 'Computer Science and Engineering (CSE)', count: '1200 Jobs' },
-  { id: '2', logo: require('../assets/jobscreen/jobcategory/bba.png'), name: 'Bachelor of Business Administration (BBA)', count: '80012 Jobs' },
-  { id: '3', logo: require('../assets/jobscreen/jobcategory/eee.png'), name: 'Electrical and Electronic Engineering (EEE)', count: '50+ Jobs' },
-  { id: '4', logo: require('../assets/jobscreen/jobcategory/msj.png'), name: 'Media Studies and Journalism (MSJ)', count: '30 Jobs' },
+  { id: '1', icon: 'laptop', name: 'Computer Science and Engineering (CSE)', count: '1200 Jobs' },
+  { id: '2', icon: 'briefcase', name: 'Bachelor of Business Administration (BBA)', count: '80012 Jobs' },
+  { id: '3', icon: 'flash', name: 'Electrical and Electronic Engineering (EEE)', count: '50+ Jobs' },
+  { id: '4', icon: 'newspaper', name: 'Media Studies and Journalism (MSJ)', count: '30 Jobs' },
 ]
 
   const onJobPress = (id: string) => {
+    console.log('Job pressed:', id);
   };
   
   const renderJobCard = (job: Job) => (
@@ -139,10 +140,7 @@ const jobs: Job[] = [
               <Text style={styles.companyName}>{job.company}</Text>
             </View>
             <TouchableOpacity style={styles.bookmarkButton}>
-              <Image 
-                source={job.isBookmarked ? require('../assets/homescreen/bookmark.png') : require('../assets/homescreen/bookmarked.png')}
-                style={styles.bookmarkIcon}
-              />
+              <MaterialCommunityIcons name={job.isBookmarked ? 'bookmark-minus-outline' : 'bookmark-outline'} style={styles.bookmarkIcon} />
             </TouchableOpacity>
           </View>
           <View style={styles.jobLocationContainer}><Text style={styles.jobLocation}>{job.location}</Text></View>
@@ -176,35 +174,42 @@ const jobs: Job[] = [
 
 
 const renderjobCountCard = (item: countprops) => {
+  const vIcon = vectorIcons[item.icon as keyof typeof vectorIcons];
+  type IconComponentProps = { name: string; size?: number; color?: string | number | undefined };
+  const IconComponent: React.ComponentType<IconComponentProps> =
+    typeof vIcon?.lib === 'function'
+      ? (vIcon!.lib as React.ComponentType<IconComponentProps>)
+      : (Icon as React.ComponentType<IconComponentProps>);
+  const iconName = vIcon?.name ?? 'search';
   return (
     <View
       key={item.id}
       style={styles.countcontainer}
     >
-      <Icon name={item.icon} style={styles.counticon} />
+      <View style={styles.iconWrapper}>
+        <IconComponent name={iconName} size={20} color={colors.primary} />
+      </View>
       <Text style={styles.jobcount}>{item.count}</Text>
       <Text style={styles.jobtitle}>{item.title}</Text>
     </View>
   )
 }
-
-const renderJobcategoryCard = (item: jobcategory)=>{
-  return(
+const renderJobcategoryCard = (item: jobcategory) => {
+  return (
     <View
       key={item.id}
       style={styles.jobcategorycontainer}>
-    <View style={styles.logocontainer}>
-      <Image source={item.logo} style={styles.jobcategorylogo} />
-    </View>
+      <View style={styles.logocontainer}>
+        <MaterialCommunityIcons name={item.icon} size={36} color={colors.primaryLight} />
+      </View>
       <Text style={styles.jobcategoryname}>{item.name}</Text>
       <Text style={styles.jobcategorycount}>{item.count}</Text>
     </View>
-  )
-}
+  );
+};
 
 const JobScreen: React.FC = () => {
-  const navigation = useNavigation();
-
+    const navigation = useNavigation();
   return (
     <View style={styles.container}>
       <View style={styles.header}>
@@ -231,10 +236,10 @@ const JobScreen: React.FC = () => {
         </View>
         <View style={styles.titlecontainer}>
           <Text style={styles.title}>
-            <Text style={{ color: '#000' }}>Find Your </Text>
+            <Text style={{ color: '#000' }}>Find your </Text>
             <Text style={{ color: '#1897FE' }}>N</Text>
             <Text style={{ color: '#A44CFF' }}>e</Text>
-            <Text style={{ color: colors.primary }}>X</Text>
+            <Text style={{ color: colors.primary }}>x</Text>
             <Text style={{ color: '#C038FF' }}>t </Text>
             <Text style={{ color: '#1897FE' }}>J</Text>
             <Text style={{ color: '#C038FF' }}>o</Text>
@@ -367,7 +372,7 @@ const styles = StyleSheet.create({
   },
   title:{
     fontSize: 40,
-    fontWeight: '500',
+    fontWeight: '600',
     marginTop: -50,
     color: '#0a0a0bff',
     includeFontPadding: false,   
@@ -392,41 +397,44 @@ const styles = StyleSheet.create({
     marginLeft: 20,
   },
   searchicons:{
-    fontSize: 18,
-    marginLeft: 180,
+    fontSize: 20,
+    marginLeft: 130,
     color: colors.primary,
     backgroundColor: '#F0ECFD',
-    padding: 8,
-    borderRadius: borderRadius.xl,
+    padding: 6,
+    borderRadius: borderRadius.xxl,
+  },
+  gridContainer: {
+    flexDirection: 'row',
+    paddingHorizontal: spacing.lg,
+    marginTop: spacing.xs,
+    marginLeft: 5,
+    justifyContent: 'space-between',
   },
   countcontainer:{
     borderRadius: borderRadius.xxl,
     marginTop: 8,
-    paddingHorizontal: -5,
+    marginLeft: -5,
+    justifyContent: 'space-between'
   },
-  counticon:{
-    fontSize: 35,
-    color: colors.primary,
+  iconWrapper: {
     marginLeft: 10,
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: 20,
+    height: 20,
   },
   jobcount:{
-    fontSize: fontSize.md,
+    fontSize: 12,
     fontWeight: '700',
     color: '#2E2E2F',
-    marginLeft: 50,
-    marginTop: -35,
+    marginLeft: 35,
+    marginTop: -27,
   },
   jobtitle:{
-    fontSize: fontSize.xs,
-    marginTop: 2,
-    marginLeft: 50,
+    fontSize: 12,
+    marginLeft: 35,
     color: '#7C7C7E',
-  },
-  gridContainer: {
-    flexDirection: 'row',
-    paddingHorizontal: spacing.md,
-    marginTop: spacing.sm,
-    marginLeft: 20,
   },
   introduction:{
     width: '90%',
@@ -506,9 +514,8 @@ const styles = StyleSheet.create({
     marginHorizontal: -10,
   },
   bookmarkIcon: {
-    width: 24,
-    height: 24,
-    marginHorizontal: -10
+    fontSize: 24,
+    color: colors.primary,
   },
   jobLocationContainer: {
     marginLeft: -20,
@@ -595,7 +602,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.primary,
     fontWeight: fontWeight.normal,
-    marginLeft: -15,
+    marginLeft: -40,
   },
   jobsList: {
     paddingHorizontal: spacing.md,

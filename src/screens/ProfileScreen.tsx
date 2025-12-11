@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import { useNavigation } from '@react-navigation/native';
 import { borderRadius, colors, fontSize, spacing } from '../styles/theme';
 import Octicons  from "react-native-vector-icons/Octicons";
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { ScrollView } from 'react-native-gesture-handler';
 
 export class ProfileScreen extends Component {
@@ -25,11 +26,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
         <View style={styles.logomap}>
-          <Image
-            source={require('../assets/more/appliedjobs.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
+          <MaterialCommunityIcons name="bookmark-outline" size={24} color="#6A4AED" />
           </View>
           <View style={{ flex: 1, marginLeft: spacing.md }}>
             <Text style={[styles.name, { marginRight: 0 }]} numberOfLines={2} ellipsizeMode="tail">Saved Jobs</Text>
@@ -42,11 +39,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
         <View style={styles.logomap}>
-          <Image
-            source={require('../assets/more/artical.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
+          <MaterialCommunityIcons name="briefcase-check" size={24} color="#6A4AED" />
           </View>
           <View style={{ flex: 1, marginLeft: spacing.md }}>
             <Text style={[styles.name, { marginRight: 0 }]} numberOfLines={2} ellipsizeMode="tail">Applied Jobs</Text>
@@ -59,11 +52,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
         <View style={styles.logomap}>
-          <Image
-            source={require('../assets/more/settings.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
+          <MaterialCommunityIcons name="cog-outline" size={24} color="#6A4AED" />
           </View>
           <View style={{ flex: 1, marginLeft: spacing.md }}>
             <Text style={[styles.name, { marginRight: 0 }]} numberOfLines={2} ellipsizeMode="tail">Settings</Text>
@@ -76,11 +65,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
         <View style={styles.logomap}>
-          <Image
-            source={require('../assets/more/artical.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
+          <MaterialCommunityIcons name="newspaper" size={24} color="#6A4AED" />
           </View>
           <View style={{ flex: 1, marginLeft: spacing.md }}>
             <Text style={[styles.name, { marginRight: 0 }]} numberOfLines={2} ellipsizeMode="tail">Artical</Text>
@@ -93,11 +78,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
         <View style={styles.logomap}>
-          <Image
-            source={require('../assets/more/support.png')}
-            style={styles.logo}
-            resizeMode="cover"
-          />
+          <MaterialCommunityIcons name="headset" size={24} color="#6A4AED" />
           </View >
           <View style={{ flex: 1, marginLeft: spacing.md }}>
             <Text style={[styles.name, { marginRight: 0 }]} numberOfLines={2} ellipsizeMode="tail">Support</Text>
@@ -110,11 +91,7 @@ export class ProfileScreen extends Component {
 
         <View style={styles.profilelist}>
           <View style={styles.logomap}>
-            <Image
-              source={require('../assets/more/training.png')}
-              style={styles.logo}
-              resizeMode="cover"
-            />
+            <MaterialCommunityIcons name="school" size={24} color="#6A4AED" />
           </View>
 
           <View style={{ flex: 1, marginLeft: spacing.md }}>
@@ -167,7 +144,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "#F0ECFD",
-    borderRadius: 30,
+    borderRadius: borderRadius.xxl,
     marginLeft: -10,
   },
   logo:{

@@ -12,8 +12,14 @@ import { ProfileScreen } from '../screens/ProfileScreen';
 import JobScreen from '../screens/JobScreen'; 
 import { DashboardScreen } from '../screens/DashboardScreen'; 
 import { MoreScreen } from '../screens/MoreScreen'; 
+import SelectedJob from '../screens/more/selectedjob';
+import SavedJob from '../screens/more/savedjob';
 import { CurvedBottomBar } from '../components/CurvedBottomBar';
 import { View, Image } from 'react-native';
+import settingsscreen from '../screens/more/settingsscreen';
+import personalinfo  from '../screens/more/personalinfo';
+import personalinfoedit  from '../screens/more/personalinfoedit';
+import loginsecu  from '../screens/more/loginsecu';
 
 export type RootStackParamList = { 
   Splash: undefined; 
@@ -27,6 +33,12 @@ export type RootStackParamList = {
   JobDetails: { jobId: string }; 
   Dashboard: undefined; 
   More: undefined; 
+  SelectedJob: undefined;
+  SavedJob: undefined;
+  Settings: undefined;
+  personalinfo: undefined;
+  personalinfoedit: undefined;
+  loginsecu: undefined;
 }; 
 
 const Stack = createStackNavigator<RootStackParamList>(); 
@@ -143,6 +155,12 @@ export function MainNavigator(): React.JSX.Element {
           <Stack.Screen name="JobDetails" component={JobScreen} />
           <Stack.Screen name="Dashboard" component={DashboardScreen} />
           <Stack.Screen name="More" component={MoreScreen} />
+          <Stack.Screen name="SelectedJob" component={SelectedJob} />
+          <Stack.Screen name="SavedJob" component={SavedJob} />
+          <Stack.Screen name="Settings" component={settingsscreen} />
+          <Stack.Screen name="personalinfo" component={personalinfo} />
+          <Stack.Screen name="personalinfoedit" component={personalinfoedit} />
+          <Stack.Screen name="loginsecu" component={loginsecu} />
         </Stack.Navigator>
 
         {/* Persistent bottom bar shown across authenticated screens */}

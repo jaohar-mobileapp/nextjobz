@@ -1,8 +1,9 @@
 export const colors = {
   // Primary colors (NextJobz brand colors)
   primary: '#6633FF', // Indigo for primary actions
-  primaryLight: '#6366F1',
+  primaryLight: '#805CF6',
   primaryDark: '#3730A3',
+  primaryMuted: '#E0E0E0',
   
   // Secondary colors
   secondary: '#10B981', // Green for success/salary
