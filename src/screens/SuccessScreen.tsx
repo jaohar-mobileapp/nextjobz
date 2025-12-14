@@ -53,7 +53,7 @@ export function SuccessScreen({ onComplete }: Props): React.JSX.Element {
     // Auto-navigate after 3 seconds
     const timer = setTimeout(() => {
       onComplete();
-    }, 8000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, [onComplete, fadeAnim, scaleAnim, progressAnim, dotsRotateAnim]);

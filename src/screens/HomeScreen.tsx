@@ -12,7 +12,8 @@ import {
 } from 'react-native';
 import { colors, spacing, borderRadius, fontSize, fontWeight, shadows } from '../styles/theme';
 import { useNavigation } from '@react-navigation/native';
-import Svg, { G, Path } from 'react-native-svg';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+import FontAwesome from 'react-native-vector-icons/FontAwesome';
 
 
 interface Props {
@@ -40,6 +41,34 @@ interface Company {
   name: string;
   logo: any;
   jobsOpen: number;
+}
+
+interface articals {
+  id: string;
+  title: string;
+  description: string;
+  image: any;
+  profileImage?: any;
+  name?: string;
+  time?: string;
+  icon?: string;
+  count?: string;
+  icons?: string;
+  countlike?: string;
+}
+
+interface trainings {
+  id: string;
+  title: string;
+  description: string;
+  image: any;
+  profileImage?: any;
+  name?: string;
+  time?: string;
+  icon?: string;
+  count?: string;
+  icons?: string;
+  countlike?: string;
 }
 
 export function HomeScreen({ onJobPress, onProfilePress, onNotificationPress }: Props): React.JSX.Element {
@@ -116,12 +145,120 @@ const jobs: Job[] = [
   ];
 
   const companies: Company[] = [
-    { id: '1', name: 'Spotify USA Inc', logo: require('../assets/homescreen/companyLogo/spotifyLogo.png'), jobsOpen: 9 },
-    { id: '2', name: 'Valve Corporation', logo: require('../assets/homescreen/companyLogo/valveLogo.png'), jobsOpen: 11 },
-    { id: '3', name: 'Airbnb', logo: require('../assets/homescreen/companyLogo/airbnbLogo.png'), jobsOpen: 8 },
+    {
+      id: '1',
+      name: 'Google LLC',
+      logo: require('../assets/homescreen/companyLogo/googleLogo.png'),
+      jobsOpen: 120,
+    },
+    {
+      id: '2',
+      name: 'Paypal',
+      logo: require('../assets/homescreen/companyLogo/paypalLogo.png'),
+      jobsOpen: 40,
+    },
+    {
+      id: '3',
+      name: 'Pinterest',
+      logo: require('../assets/homescreen/companyLogo/pinterestLogo.png'),
+      jobsOpen: 75,
+    },
+    {
+      id: '4',
+      name: 'Apple Inc.',
+      logo: require('../assets/homescreen/companyLogo/appleLogo.png'),
+      jobsOpen: 20,
+    },
+    {
+      id: '5',
+      name: 'Spotify',
+      logo: require('../assets/homescreen/companyLogo/spotifyLogo.png'),
+      jobsOpen: 15,
+    },
   ];
 
-  const categories = ['All', 'Design', 'Technology', 'Finance'];
+  const articals: articals[] = [
+    {
+      id: '1',
+      image: require('../assets/homescreen/articals/groups.png'),
+      profileImage: require('../assets/homescreen/articals/profile.png'),
+      name: 'Jaohar Raihan',
+      time: '35min',
+      title: 'The Power of Art & Illustration',
+      description: 'Old school console is making a slow comeback in our household. Most of us have been staying in confinement during the holidays.',
+      icon: 'eye-outline',
+      count: '1.2k',
+      icons: 'thumbs-o-up',
+      countlike: '30',
+    },
+    {
+      id: '2',
+      image: require('../assets/homescreen/articals/groups.png'),
+      profileImage: require('../assets/homescreen/articals/profile.png'),
+      name: 'Jaohar Raihan',
+      time: '35min',
+      title: 'The Power of Art & Illustration',
+      description: 'Old school console is making a slow comeback in our household. Most of us have been staying in confinement during the holidays.',
+      icon: 'eye-outline',
+      count: '1.2k',
+      icons: 'thumbs-o-up',
+      countlike: '30',
+    },
+    {
+      id: '3',
+      image: require('../assets/homescreen/articals/groups.png'),
+      profileImage: require('../assets/homescreen/articals/profile.png'),
+      name: 'Jaohar Raihan',
+      time: '35min',
+      title: 'The Power of Art & Illustration',
+      description: 'Old school console is making a slow comeback in our household. Most of us have been staying in confinement during the holidays.',
+      icon: 'eye-outline',
+      count: '1.2k',
+      icons: 'thumbs-o-up',
+      countlike: '30',
+    },
+  ];
+
+  const trainings: trainings[] = [
+    {id: '1',
+     image: require('../assets/homescreen/articals/groups.png'),
+     profileImage: require('../assets/homescreen/articals/profile.png'),
+     name: 'Jaohar Raihan',
+     time: '35min',
+     title: 'The Power of Bangladesh people',
+     description: 'Äll of us have been staying in marathon whole years. We works hard to make our country pride also for our old genarations. Our main focus is to make bangladesh a great country also everyones eats 3 times a day.',
+     icon: 'eye-outline',
+     count: '1234',
+     icons: 'thumbs-o-up',
+     countlike: '2433',
+    },
+    {id: '2',
+     image: require('../assets/homescreen/articals/groups.png'),
+     profileImage: require('../assets/homescreen/articals/profile.png'),
+     name: 'Jaohar Raihan',
+     time: '35min',
+     title: 'The Power of Bangladesh people',
+     description: 'Äll of us have been staying in marathon whole years. We works hard to make our country pride also for our old genarations. Our main focus is to make bangladesh a great country also everyones eats 3 times a day.',
+     icon: 'eye-outline',
+     count: '1234',
+     icons: 'thumbs-o-up',
+     countlike: '2433',
+    },
+    {id: '3',
+     image: require('../assets/homescreen/articals/groups.png'),
+     profileImage: require('../assets/homescreen/articals/profile.png'),
+     name: 'Jaohar Raihan',
+     time: '35min',
+     title: 'The Power of Bangladesh people',
+     description: 'Äll of us have been staying in marathon whole years. We works hard to make our country pride also for our old genarations. Our main focus is to make bangladesh a great country also everyones eats 3 times a day.',
+     icon: 'eye-outline',
+     count: '1234',
+     icons: 'thumbs-o-up',
+     countlike: '2433',
+    }
+  ]
+
+  const categories: string[] = ['All', 'Full Time', 'Part Time', 'Remote', 'Freelance'];
 
   const getCompanyLogo = (logo: string) => {
     const logoMap: { [key: string]: any } = {
@@ -196,6 +333,71 @@ const jobs: Job[] = [
        <Text style={styles.companyCardJobs}>{company.jobsOpen} Jobs open</Text>
     </View>
   );
+
+  const renderArticalCard = (artical: articals) => (
+    <View key={artical.id} style={styles.articleCard}>
+      <Image source={artical.image} style={styles.articleImage} />
+
+      <View style={styles.articleContentTop}>
+        <View style={styles.articleHeaderRow}>
+          <View style={styles.articleAuthorRow}>
+            <Image source={artical.profileImage} style={styles.articleProfileImage} />
+            <View style={styles.articleInfo}>
+              <Text style={styles.articleName}>{artical.name}</Text>
+            </View>
+          </View>
+          <Text style={styles.articleTime}>{artical.time}</Text>
+        </View>
+
+        <Text style={styles.articleTitle}>{artical.title}</Text>
+        <Text style={styles.articleDescription} numberOfLines={3} ellipsizeMode="tail">{artical.description}</Text>
+      </View>
+
+      <View style={styles.articleDivider} />
+
+      <View style={styles.articleFooterRow}>
+        <View style={styles.articleStatsRow}>
+          <MaterialCommunityIcons name={artical.icon as string} size={18} color={colors.textLight} />
+          <Text style={styles.articleCount}>{artical.count}</Text>
+        </View>
+
+        <View style={styles.articleLikeRow}>
+          <FontAwesome name={artical.icons as string} size={18} color={colors.textLight} />
+          <Text style={styles.articleCount}>{artical.countlike}</Text>
+        </View>
+      </View>
+    </View>
+  )
+
+  const renderTrainingsCard = (item: trainings) => (
+    <View key={item.id} style={styles.trainingsCard}>
+      <Image source={item.image} style={styles.trainingImage} />
+    <View style={styles.trainingscontenttop}>
+    <View style={styles.trainingsheaderrow}>
+    <View style={styles.trainingsauthorrow}>
+       <Image source={item.profileImage} style={styles.trainingsprofileimage} />
+    <View style={styles.trainingsinfo}>
+       <Text style={styles.trainingsname}>{item.name}</Text>
+    </View>
+    </View>
+    <Text style={styles.trainingstime}>{item.time}</Text>
+    </View>
+    <Text style={styles.trainingstitle}>{item.title}</Text>
+    <Text style={styles.traningdescription} numberOfLines={3}>{item.description}</Text>
+    </View>
+    <View style={styles.trainingsdevider} />
+    <View style={styles.trainingsfooterrow}>
+    <View style={styles.trainingsstatsrow}>
+      <MaterialCommunityIcons name={item.icon as string} size={24} color={colors.textLight} />
+      <Text style={styles.trainingcount}>{item.count}</Text>
+    </View>
+    <View style={styles.trainingslikerow}>
+      <FontAwesome name={item.icons as string} size={18} color={colors.textLight} />
+      <Text style={styles.trainingcount}>{item.countlike}</Text>
+    </View>
+    </View>
+    </View>
+  )
 
   return (
     <SafeAreaView style={styles.container}>
@@ -331,6 +533,37 @@ const jobs: Job[] = [
         <View style={styles.jobsList}>
           {jobs.slice(1).map(renderJobCard)}
         </View>
+
+        {/* Articles Section */}
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Articles</Text>
+          <TouchableOpacity>
+            <Text style={styles.seeAllButton}>See All</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.companiesContainer}
+        >
+          {articals.map(renderArticalCard)}
+        </ScrollView>
+
+        {/* Training section */}
+
+        <View style={styles.sectionHeader}>
+          <Text style={styles.sectionTitle}>Trainings</Text>
+          <TouchableOpacity>
+            <Text style={styles.seeAllButton}>See All</Text>
+          </TouchableOpacity>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          style={styles.trainingsContainer}
+        >
+          {trainings.map(renderTrainingsCard)}
+        </ScrollView>
 
         {/* Bottom Padding */}
         <View style={styles.bottomPadding} />
@@ -629,6 +862,10 @@ const styles = StyleSheet.create({
     paddingLeft: spacing.md,
     marginBottom: spacing.xl,
   },
+  trainingsContainer: {
+    paddingLeft: spacing.md,
+    marginBottom: spacing.xl,
+  },
   companyCard: {
     backgroundColor: colors.white,
     borderRadius: borderRadius.lg,
@@ -709,20 +946,6 @@ const styles = StyleSheet.create({
   },
   navIconjob:{
     width: 25,
-    height: 25,
-  },
-  navIconContainer: {
-    backgroundColor: colors.primary,
-    borderRadius: 60,
-    width: 70,
-    height: 70,
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: -40,
-  },
-  navLabel: {
-    fontSize: 12,
-    color: colors.textLight,
   },
   navLabelActive: {
     fontSize: 12,
@@ -734,16 +957,192 @@ const styles = StyleSheet.create({
     height: 20,
     color: colors.primary,
   },
-    curvedBackground: {
-    backgroundColor: '#ffffff',     // background color of curve
-    paddingTop: 20,                 // push nav upward to create curve
-    paddingBottom: 10,
-    borderTopLeftRadius: 40,        // curve shape
+  articleCard: {
+    width: 330,
+    height: 350,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
+    marginBottom: spacing.md,
+    ...shadows.sm,
+    borderWidth: 1,
+    borderColor: colors.gray200,
+    marginRight: spacing.md,
+  },
+  articleImage: {
+    width: '95%',
+    height: 160,
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: spacing.sm,
+    borderRadius: borderRadius.md,
+  },
+  articleContentTop: {
+    padding: spacing.md,
+  },
+  articleHeaderRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  articleAuthorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  articleProfileImage: {
+    width: 26,
+    height: 26,
+    borderRadius: 18,
+    marginRight: spacing.sm,
+  },
+  articleInfo: {
+    justifyContent: 'center',
+  },
+  articleName: {
+    fontSize: 16,
+    fontWeight: fontWeight.bold,
+    color: colors.black,
+  },
+  articleTime: {
+    fontSize: 12,
+    color: colors.textLight,
+  },
+  articleTitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.black,
+    marginTop: -5,
+  },
+  articleDescription: {
+    fontSize: 14,
+    color: colors.textLight,
+    marginTop: spacing.xs,
+  },
+  articleDivider: {
+    height: 1,
+    backgroundColor: colors.gray200,
+  },
+  articleFooterRow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: spacing.md,
+    gap: 24,
+  },
+  articleStatsRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: spacing.lg,
+  },
+  articleLikeRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 'auto',
+  },
+  articleCount: {
+    fontSize: 12,
+    color: colors.textLight,
+    marginLeft: spacing.xs,
+  },
+  curvedBackground: {
+    backgroundColor: '#ffffff',     
+    paddingTop: 20,                 
+    borderTopLeftRadius: 40,        
     borderTopRightRadius: 40,
     shadowColor: colors.black,
     shadowOpacity: 0.1,
     shadowRadius: 10,
     shadowOffset: { width: 0, height: -2 },
-    elevation: 8,                   // Android shadow
+    elevation: 8,                  
   },
+  trainingsCard: {
+    width: 330,
+    height: 350,
+    backgroundColor: colors.white,
+    borderRadius: borderRadius.lg,
+    overflow: 'hidden',
+    marginBottom: spacing.md,
+    ...shadows.sm,
+    borderWidth: 1,
+    borderColor: colors.gray200,
+    marginRight: spacing.md,
+  },
+  trainingImage: {
+    width: '95%',
+    height: 160,
+    resizeMode: 'cover',
+    alignSelf: 'center',
+    marginTop: spacing.sm,
+    borderRadius: borderRadius.md,
+  },
+  trainingscontenttop: {
+    padding: spacing.md,
+  },
+  trainingsheaderrow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginBottom: spacing.sm,
+  },
+  trainingsauthorrow: {
+        flexDirection: 'row',
+    alignItems: 'center',
+  },
+  trainingsinfo: {
+    justifyContent: 'center',
+  },
+  trainingsprofileimage: {
+    width: 26,
+    height: 26,
+    borderRadius: 18,
+    marginRight: spacing.sm,
+  },
+  trainingsname: {
+    fontSize: 16,
+    fontWeight: fontWeight.bold,
+    color: colors.black,
+  },
+  trainingstime: {
+    fontSize: 12,
+    color: colors.textLight,
+  },
+  trainingstitle: {
+    fontSize: 18,
+    fontWeight: '700',
+    color: colors.black,
+    marginTop: -5,
+  },
+  traningdescription: {
+    fontSize: 14,
+    color: colors.textLight,
+    marginTop: spacing.xs,
+  },
+  trainingsdevider: {
+    height: 1,
+    backgroundColor: colors.gray200,
+  },
+  trainingsfooterrow: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    padding: spacing.md,
+    gap: 24,
+  },
+  trainingsstatsrow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginRight: spacing.lg,
+  },
+  trainingcount: {
+    fontSize: 12,
+    color: colors.textLight,
+    marginLeft: spacing.xs,
+  },
+  trainingslikerow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginLeft: 'auto',
+  },
+
 });
